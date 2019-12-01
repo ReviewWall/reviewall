@@ -1,7 +1,6 @@
 package com.reviewall.reviewall.service;
 
 import com.reviewall.reviewall.model.Firma;
-import com.reviewall.reviewall.model.QFirma;
 import com.reviewall.reviewall.repository.FirmaRepository;
 import org.springframework.stereotype.Service;
 

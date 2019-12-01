@@ -8,4 +8,5 @@ public interface YorumService {
     List<Yorum> yorumlariGetir();
     Yorum kaydet(Long id,Yorum yorum);
     void silYorumById(Long id);
+    Yorum findYorumById(Long id);
 }

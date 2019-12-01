@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.reviewall.reviewall.model.Firma;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class YorumServiceImp implements YorumService {
@@ -35,5 +36,11 @@ public class YorumServiceImp implements YorumService {
     @Override
     public void silYorumById(Long id) {
         yorumRepository.deleteById(id);
+    }
+
+    @Override
+    public Yorum findYorumById(Long id) {
+        Optional<Yorum> result = yorumRepository.findById(id);
+        return result.get();
     }
 }
