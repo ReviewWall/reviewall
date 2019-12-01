@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/firma")
+@RequestMapping("/firmalar")
 public class FirmaController {
 
     private FirmaService firmaService;
@@ -18,12 +18,12 @@ public class FirmaController {
         this.firmaService = firmaService;
     }
 
-    @GetMapping("/tumFirmalar")
+    @GetMapping
     public List<Firma> tumFirmalariGetir(){
         return firmaService.firmalariGetir();
     }
 
-    @PostMapping("/kaydet")
+    @PostMapping
     public Firma firmaKaydet(@Valid @RequestBody Firma firma){
         firmaService.kaydet(firma);
         return firma;
@@ -33,4 +33,5 @@ public class FirmaController {
     public void silFirmaById(@PathVariable Long id){
         firmaService.silFirmaById(id);
     }
+
 }

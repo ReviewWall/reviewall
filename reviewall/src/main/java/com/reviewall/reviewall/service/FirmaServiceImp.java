@@ -1,9 +1,11 @@
 package com.reviewall.reviewall.service;
 
 import com.reviewall.reviewall.model.Firma;
+import com.reviewall.reviewall.model.QFirma;
 import com.reviewall.reviewall.repository.FirmaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -27,5 +29,10 @@ public class FirmaServiceImp implements FirmaService {
     @Override
     public void silFirmaById(Long id) {
         firmaRepository.deleteById(id);
+    }
+
+    @Override
+    public Firma getirFirmaByName(String name) {
+        return firmaRepository.findByFirmaAdi(name);
     }
 }

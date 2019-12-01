@@ -1,11 +1,12 @@
 package com.reviewall.reviewall.model;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "firma")
 public class Firma {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "firma_id")
@@ -16,6 +17,14 @@ public class Firma {
 
     @Column(name = "urun")
     private String urun;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "FIRMA_YORUM",
+            joinColumns = @JoinColumn(name = "firma_id"),
+            inverseJoinColumns = @JoinColumn(name = "yorum_id")
+    )
+    private Set<Yorum> yorumSet;
 
     public Long getFirma_id() {
         return firma_id;
@@ -41,25 +50,11 @@ public class Firma {
         this.urun = urun;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Firma firma = (Firma) obj;
-        return firma_id.equals(firma.firma_id);
+    public Set<Yorum> getYorumSet() {
+        return yorumSet;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firma_id);
-    }
-
-    @Override
-    public String toString() {
-        return "Firma"+
-                "{" + "firma_id=" + firma_id +
-                ", firmaAdi='" + firmaAdi + '\'' +
-                ", urun='" + urun + '\'' +
-                '}';
+    public void setYorumSet(Set<Yorum> yorumSet) {
+        this.yorumSet = yorumSet;
     }
 }

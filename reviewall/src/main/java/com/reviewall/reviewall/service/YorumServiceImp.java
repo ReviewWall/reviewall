@@ -1,17 +1,22 @@
 package com.reviewall.reviewall.service;
 
+import com.reviewall.reviewall.model.Kullanici;
 import com.reviewall.reviewall.model.Yorum;
 import com.reviewall.reviewall.repository.YorumRepository;
 import org.springframework.stereotype.Service;
+import com.reviewall.reviewall.model.Firma;
 
 import java.util.List;
 
 @Service
 public class YorumServiceImp implements YorumService {
-    private YorumRepository yorumRepository;
 
-    public YorumServiceImp(YorumRepository yorumRepository) {
+    private final YorumRepository yorumRepository;
+    private final KullaniciService kullaniciService;
+
+    public YorumServiceImp(YorumRepository yorumRepository, KullaniciService kullaniciService) {
         this.yorumRepository = yorumRepository;
+        this.kullaniciService = kullaniciService;
     }
 
     @Override
@@ -20,8 +25,11 @@ public class YorumServiceImp implements YorumService {
     }
 
     @Override
-    public Yorum kaydet(Yorum yorum) {
-        return yorumRepository.save(yorum);
+    public Yorum kaydet(Long id, Yorum yorum) {
+        Kullanici kullanici = kullaniciService.kullaniciGetirById(id);
+        kullanici.getYorumSet().add(yorum);
+        kullaniciService.kaydet(kullanici);
+        return yorum;
     }
 
     @Override

@@ -2,14 +2,17 @@ package com.reviewall.reviewall.service;
 
 import com.reviewall.reviewall.model.Kullanici;
 import com.reviewall.reviewall.repository.KullaniciRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class KullaniciServiceImp implements KullaniciService {
-    private KullaniciRepository kullaniciRepository;
+
+    private final KullaniciRepository kullaniciRepository;
 
     public KullaniciServiceImp(KullaniciRepository kullaniciRepository) {
         this.kullaniciRepository = kullaniciRepository;
@@ -22,6 +25,9 @@ public class KullaniciServiceImp implements KullaniciService {
 
     @Override
     public Kullanici kaydet(Kullanici kullanici) {
+        if(kullanici.getYorumSet()==null) {
+            kullanici.setYorumSet(new HashSet<>());
+        }
         return kullaniciRepository.save(kullanici);
     }
 

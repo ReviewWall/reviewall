@@ -5,7 +5,7 @@ import com.reviewall.reviewall.model.Yorum;
 import java.util.List;
 
 public interface YorumService {
-    public List<Yorum> yorumlariGetir();
-    public Yorum kaydet(Yorum yorum);
-    public void silYorumById(Long id);
+    List<Yorum> yorumlariGetir();
+    Yorum kaydet(Long id,Yorum yorum);
+    void silYorumById(Long id);
 }

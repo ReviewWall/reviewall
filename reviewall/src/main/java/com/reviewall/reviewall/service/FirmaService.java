@@ -5,7 +5,8 @@ import com.reviewall.reviewall.model.Firma;
 import java.util.List;
 
 public interface FirmaService {
-    public List<Firma> firmalariGetir();
-    public Firma kaydet(Firma firma);
-    public void silFirmaById(Long id);
+    List<Firma> firmalariGetir();
+    Firma kaydet(Firma firma);
+    void silFirmaById(Long id);
+    Firma getirFirmaByName(String name);
 }

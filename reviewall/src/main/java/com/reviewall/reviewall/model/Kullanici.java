@@ -1,14 +1,12 @@
 package com.reviewall.reviewall.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "kullanici")
 public class Kullanici {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "kullanici_id")
@@ -32,22 +30,9 @@ public class Kullanici {
     @Column(name = "telefon_numarasi")
     private String telefonNumarasi;
 
-    @Min(0)
-    @Max(5)
-    @Column(name = "oylama")
-    private Integer oylama;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "KULLANICI_YORUM_FIRMA",
-            joinColumns = @JoinColumn(name = "kullanici_id"),
-            inverseJoinColumns = @JoinColumn(name = "firma_id")
-    )
-    private Set<Firma> firmaSet;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "KULLANICI_YORUM_FIRMA",
+            name = "KULLANICI_YORUM",
             joinColumns = @JoinColumn(name = "kullanici_id"),
             inverseJoinColumns = @JoinColumn(name = "yorum_id")
     )
@@ -109,22 +94,6 @@ public class Kullanici {
         this.telefonNumarasi = telefonNumarasi;
     }
 
-    public Integer getOylama() {
-        return oylama;
-    }
-
-    public void setOylama(Integer oylama) {
-        this.oylama = oylama;
-    }
-
-    public Set<Firma> getFirmaSet() {
-        return firmaSet;
-    }
-
-    public void setFirmaSet(Set<Firma> firmaSet) {
-        this.firmaSet = firmaSet;
-    }
-
     public Set<Yorum> getYorumSet() {
         return yorumSet;
     }
@@ -133,32 +102,4 @@ public class Kullanici {
         this.yorumSet = yorumSet;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        Kullanici kullanici = (Kullanici) obj;
-        return kullanici_id.equals(kullanici.kullanici_id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(kullanici_id);
-    }
-
-    @Override
-    public String toString() {
-        return "Kullanici"+
-                "{" + "kullanici_id=" + kullanici_id +
-                ", isim='" + isim + '\'' +
-                ", soyisim='" + soyisim + '\'' +
-                ", kullaniciAdi='" + kullaniciAdi + '\'' +
-                ", parola='" + parola + '\'' +
-                ", email='" + email + '\'' +
-                ", telefonNumarasi='" + telefonNumarasi + '\'' +
-                ", oylama=" + oylama +
-                ", firmaSet=" + firmaSet +
-                ", yorumSet=" + yorumSet +
-                '}';
-    }
 }

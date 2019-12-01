@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/yorum")
+@RequestMapping("/yorumlar")
 public class YorumController {
 
     private YorumService yorumService;
@@ -18,19 +18,20 @@ public class YorumController {
         this.yorumService = yorumService;
     }
 
-    @GetMapping("/tumYorumlar")
-    public List<Yorum> tumYorumlarıGetir(){
+    @GetMapping
+    public List<Yorum> tumYorumlariGetir(){
         return yorumService.yorumlariGetir();
     }
 
-    @PostMapping("/kaydet")
-    public Yorum yorumKaydet(@Valid @RequestBody Yorum yorum){
-        yorumService.kaydet(yorum);
+    @PostMapping("/{id}")
+    public Yorum yorumKaydet(@PathVariable Long id,@Valid @RequestBody Yorum yorum){
+        yorumService.kaydet(id,yorum);
         return yorum;
     }
 
-    @GetMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void silYorumById(@PathVariable Long id){
         yorumService.silYorumById(id);
     }
+
 }
