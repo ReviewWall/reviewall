@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface YorumService {
     List<Yorum> yorumlariGetir();
-    Yorum kaydet(Long id,Yorum yorum);
+    Yorum kaydet(Long id,String firmaAdi,Yorum yorum);
     void silYorumById(Long id);
     Yorum findYorumById(Long id);
 }

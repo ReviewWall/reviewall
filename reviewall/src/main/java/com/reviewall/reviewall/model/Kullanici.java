@@ -10,7 +10,7 @@ public class Kullanici {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "kullanici_id")
-    private Long kullanici_id;
+    private Long id;
 
     @Column(name = "isim")
     private String isim;
@@ -30,20 +30,12 @@ public class Kullanici {
     @Column(name = "telefon_numarasi")
     private String telefonNumarasi;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "KULLANICI_YORUM",
-            joinColumns = @JoinColumn(name = "kullanici_id"),
-            inverseJoinColumns = @JoinColumn(name = "yorum_id")
-    )
-    private Set<Yorum> yorumSet;
-
-    public Long getKullanici_id() {
-        return kullanici_id;
+    public Long getId() {
+        return id;
     }
 
-    public void setKullanici_id(Long kullanici_id) {
-        this.kullanici_id = kullanici_id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getIsim() {
@@ -92,14 +84,6 @@ public class Kullanici {
 
     public void setTelefonNumarasi(String telefonNumarasi) {
         this.telefonNumarasi = telefonNumarasi;
-    }
-
-    public Set<Yorum> getYorumSet() {
-        return yorumSet;
-    }
-
-    public void setYorumSet(Set<Yorum> yorumSet) {
-        this.yorumSet = yorumSet;
     }
 
 }

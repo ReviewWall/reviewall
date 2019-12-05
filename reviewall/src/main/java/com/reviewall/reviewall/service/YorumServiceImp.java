@@ -14,10 +14,12 @@ public class YorumServiceImp implements YorumService {
 
     private final YorumRepository yorumRepository;
     private final KullaniciService kullaniciService;
+    private final FirmaService firmaService;
 
-    public YorumServiceImp(YorumRepository yorumRepository, KullaniciService kullaniciService) {
+    public YorumServiceImp(YorumRepository yorumRepository, KullaniciService kullaniciService, FirmaService firmaService) {
         this.yorumRepository = yorumRepository;
         this.kullaniciService = kullaniciService;
+        this.firmaService = firmaService;
     }
 
     @Override
@@ -26,11 +28,12 @@ public class YorumServiceImp implements YorumService {
     }
 
     @Override
-    public Yorum kaydet(Long id, Yorum yorum) {
+    public Yorum kaydet(Long id,String firmaAdi, Yorum yorum) {
         Kullanici kullanici = kullaniciService.kullaniciGetirById(id);
-        kullanici.getYorumSet().add(yorum);
-        kullaniciService.kaydet(kullanici);
-        return yorum;
+        Firma firma = firmaService.getirFirmaByName(firmaAdi);
+        yorum.setKullanici(kullanici);
+        yorum.setFirma(firma);
+        return yorumRepository.save(yorum);
     }
 
     @Override

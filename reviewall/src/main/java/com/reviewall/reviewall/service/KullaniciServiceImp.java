@@ -25,9 +25,6 @@ public class KullaniciServiceImp implements KullaniciService {
 
     @Override
     public Kullanici kaydet(Kullanici kullanici) {
-        if(kullanici.getYorumSet()==null) {
-            kullanici.setYorumSet(new HashSet<>());
-        }
         return kullaniciRepository.save(kullanici);
     }
 

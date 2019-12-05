@@ -24,6 +24,12 @@ public class Yorum {
     @Column(name = "yildiz_sayisi")
     private Integer yildizSayisi;
 
+    @ManyToOne
+    private Kullanici kullanici;
+
+    @ManyToOne
+    private Firma firma;
+
     public Long getYorum_id() {
         return yorum_id;
     }
@@ -56,4 +62,19 @@ public class Yorum {
         this.yildizSayisi = yildizSayisi;
     }
 
+    public Kullanici getKullanici() {
+        return kullanici;
+    }
+
+    public void setKullanici(Kullanici kullanici) {
+        this.kullanici = kullanici;
+    }
+
+    public Firma getFirma() {
+        return firma;
+    }
+
+    public void setFirma(Firma firma) {
+        this.firma = firma;
+    }
 }

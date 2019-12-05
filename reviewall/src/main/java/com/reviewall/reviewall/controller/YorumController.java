@@ -23,9 +23,9 @@ public class YorumController {
         return yorumService.yorumlariGetir();
     }
 
-    @PostMapping("/{id}")
-    public Yorum yorumKaydet(@PathVariable Long id,@Valid @RequestBody Yorum yorum){
-        yorumService.kaydet(id,yorum);
+    @PostMapping("/{id}/{firmaAdi}")
+    public Yorum yorumKaydet(@PathVariable Long id,@PathVariable String firmaAdi,@Valid @RequestBody Yorum yorum){
+        yorumService.kaydet(id,firmaAdi,yorum);
         return yorum;
     }
 
