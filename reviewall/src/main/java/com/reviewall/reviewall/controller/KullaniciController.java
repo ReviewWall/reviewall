@@ -2,6 +2,8 @@ package com.reviewall.reviewall.controller;
 
 import com.reviewall.reviewall.model.Kullanici;
 import com.reviewall.reviewall.service.KullaniciService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -24,9 +26,13 @@ public class KullaniciController {
     }
 
     @PostMapping
-    public Kullanici kullaniciKaydet(@Valid @RequestBody Kullanici kullanici){
-        kullaniciService.kaydet(kullanici);
-        return kullanici;
+    public ResponseEntity kullaniciKaydet(@Valid @RequestBody Kullanici kullanici){
+        Kullanici kaydedilenKullanici = kullaniciService.kaydet(kullanici);
+        if(kaydedilenKullanici == null) {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("mevcut");
+        } else  {
+            return ResponseEntity.ok(kaydedilenKullanici);
+        }
     }
 
     @GetMapping("/{id}")

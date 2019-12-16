@@ -12,6 +12,9 @@ public class Kullanici {
     @Column(name = "kullanici_id")
     private Long id;
 
+    @Column( name = "username")
+    private String username;
+
     @Column(name = "isim")
     private String isim;
 
@@ -86,4 +89,11 @@ public class Kullanici {
         this.telefonNumarasi = telefonNumarasi;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

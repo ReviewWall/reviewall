@@ -28,8 +28,8 @@ public class YorumServiceImp implements YorumService {
     }
 
     @Override
-    public Yorum kaydet(Long id,String firmaAdi, Yorum yorum) {
-        Kullanici kullanici = kullaniciService.kullaniciGetirById(id);
+    public Yorum kaydet(String kullaniciAdi,String firmaAdi, Yorum yorum) {
+        Kullanici kullanici = kullaniciService.kullaniciGetirByUsername(kullaniciAdi);
         Firma firma = firmaService.getirFirmaByName(firmaAdi);
         yorum.setKullanici(kullanici);
         yorum.setFirma(firma);

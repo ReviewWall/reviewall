@@ -25,13 +25,23 @@ public class KullaniciServiceImp implements KullaniciService {
 
     @Override
     public Kullanici kaydet(Kullanici kullanici) {
-        return kullaniciRepository.save(kullanici);
+        Kullanici olanKullanici = kullaniciRepository.findByUsername(kullanici.getUsername());
+        if(olanKullanici == null) {
+            return kullaniciRepository.save(kullanici);
+        } else {
+            return null;
+        }
     }
 
     @Override
     public Kullanici kullaniciGetirById(Long id) {
         Optional<Kullanici> result = kullaniciRepository.findById(id);
         return result.get();
+    }
+
+    @Override
+    public Kullanici kullaniciGetirByUsername(String username) {
+        return kullaniciRepository.findByUsername(username);
     }
 
     @Override
