@@ -1,7 +1,6 @@
 package com.reviewall.reviewall.model;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "kullanici")
@@ -11,9 +10,6 @@ public class Kullanici {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "kullanici_id")
     private Long id;
-
-    @Column( name = "username")
-    private String username;
 
     @Column(name = "isim")
     private String isim;
@@ -89,11 +85,17 @@ public class Kullanici {
         this.telefonNumarasi = telefonNumarasi;
     }
 
-    public String getUsername() {
-        return username;
+    public Boolean uygunMu() {
+        if(this.kullaniciAdi == null) {
+            return false;
+        } else if(this.isim == null) {
+            return false;
+        } else if(this.soyisim == null) {
+            return false;
+        } else if(this.parola == null) {
+            return false;
+        }
+        return true;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

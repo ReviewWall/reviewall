@@ -26,10 +26,15 @@ public class KullaniciController {
     }
 
     @PostMapping
-    public ResponseEntity kullaniciKaydet(@Valid @RequestBody Kullanici kullanici){
+    public ResponseEntity<Kullanici> kullaniciKaydet(@Valid @RequestBody Kullanici kullanici){
+
+        if(!kullanici.uygunMu()){
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+        }
+
         Kullanici kaydedilenKullanici = kullaniciService.kaydet(kullanici);
         if(kaydedilenKullanici == null) {
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("mevcut");
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
         } else  {
             return ResponseEntity.ok(kaydedilenKullanici);
         }

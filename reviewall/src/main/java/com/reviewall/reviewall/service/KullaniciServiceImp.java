@@ -2,10 +2,8 @@ package com.reviewall.reviewall.service;
 
 import com.reviewall.reviewall.model.Kullanici;
 import com.reviewall.reviewall.repository.KullaniciRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +23,7 @@ public class KullaniciServiceImp implements KullaniciService {
 
     @Override
     public Kullanici kaydet(Kullanici kullanici) {
-        Kullanici olanKullanici = kullaniciRepository.findByUsername(kullanici.getUsername());
+        Kullanici olanKullanici = kullaniciGetirByUsername(kullanici.getKullaniciAdi());
         if(olanKullanici == null) {
             return kullaniciRepository.save(kullanici);
         } else {
@@ -41,7 +39,7 @@ public class KullaniciServiceImp implements KullaniciService {
 
     @Override
     public Kullanici kullaniciGetirByUsername(String username) {
-        return kullaniciRepository.findByUsername(username);
+        return kullaniciRepository.findByKullaniciAdi(username);
     }
 
     @Override
