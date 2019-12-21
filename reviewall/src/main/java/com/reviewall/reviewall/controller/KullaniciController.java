@@ -50,6 +50,11 @@ public class KullaniciController {
         kullaniciService.silKullaniciById(id);
     }
 
-
+    @PostMapping("/{kullaniciAdi}/changeProfile")
+    public void kullaniciBilgileriDegistir(@PathVariable String kullaniciAdi, @RequestBody Kullanici kullanici) {
+        Kullanici eskiKullanici = kullaniciService.kullaniciGetirByUsername(kullaniciAdi);
+        kullanici.setId(eskiKullanici.getId());
+        kullaniciService.kaydet(kullanici);
+    }
 
 }
