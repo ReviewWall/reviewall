@@ -24,6 +24,9 @@ public class Yorum {
     @Column(name = "yildiz_sayisi")
     private Integer yildizSayisi;
 
+    @Column(name = "kategori")
+    private String kategori;
+
     @ManyToOne
     private Kullanici kullanici;
 
@@ -76,5 +79,13 @@ public class Yorum {
 
     public void setFirma(Firma firma) {
         this.firma = firma;
+    }
+
+    public String getKategori() {
+        return kategori;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
     }
 }
