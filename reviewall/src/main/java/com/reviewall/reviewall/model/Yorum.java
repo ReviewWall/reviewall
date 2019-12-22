@@ -13,7 +13,7 @@ public class Yorum {
     @Column(name = "yorum_id")
     private Long yorum_id;
 
-    @Column(name = "urun_etiketi")
+    @Column(name = "urun")
     private String urun;
 
     @Column(name = "yorum")
