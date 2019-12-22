@@ -14,7 +14,7 @@ public class Yorum {
     private Long yorum_id;
 
     @Column(name = "urun_etiketi")
-    private String urunEtiketi;
+    private String urun;
 
     @Column(name = "yorum")
     private String yorum;
@@ -41,12 +41,12 @@ public class Yorum {
         this.yorum_id = yorum_id;
     }
 
-    public String getUrunEtiketi() {
-        return urunEtiketi;
+    public String getUrun() {
+        return urun;
     }
 
-    public void setUrunEtiketi(String urunEtiketi) {
-        this.urunEtiketi = urunEtiketi;
+    public void setUrun(String urunEtiketi) {
+        this.urun = urunEtiketi;
     }
 
     public String getYorum() {
